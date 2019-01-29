@@ -1,0 +1,23 @@
+package com.skunity.ducky.commands
+
+import com.skunity.ducky.cmdapi.DuckyCommand
+import com.skunity.ducky.cmdapi.Rank
+import com.skunity.ducky.random
+import com.skunity.ducky.sendWithTyping
+import net.dv8tion.jda.core.entities.Message
+
+/**
+ * @author Nicofisi
+ */
+object CmdHiIm : DuckyCommand() {
+    init {
+        name = "Say Hello"
+        description = "Send a message that matches this syntax if you want me to reply with \"hi\""
+        syntax = listOf("hi %bot% im %string%", "%bot% im %string%")
+        minRank = Rank.Everyone
+    }
+
+    override fun execute(message: Message, arguments: List<Any>) {
+        message.channel.sendWithTyping("hi " + (arguments.first() as String).noEveryoneHere + " im ducky")
+    }
+}
